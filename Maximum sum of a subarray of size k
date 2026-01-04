@@ -1,0 +1,17 @@
+class Solution:
+    def maxSubarraySum(self, arr, k):
+        # code here 
+        n = len(arr)
+        if n < k:
+            return -1
+    
+        # compute sum of first window
+        windowSum = sum(arr[:k])
+        maxSum = windowSum
+    
+        # slide the window
+        for i in range(k, n):
+            windowSum += arr[i] - arr[i - k]
+            maxSum = max(maxSum, windowSum)
+    
+        return maxSum
